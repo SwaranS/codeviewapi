@@ -25,12 +25,14 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import com.google.common.collect.Lists;
+import org.springframework.beans.factory.annotation.Autowired;
+
 /**
  * Created by Home on 12/07/2014.
  */
 public class HeadParser {
 
-    Repository repository ;
+    static Repository repository ;
 
     public static List<RevCommit> getCommits(Repository repository) {
         RevWalk walk = new RevWalk(repository);
