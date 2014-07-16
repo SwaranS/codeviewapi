@@ -14,7 +14,7 @@
         { //dataSeries object
 
          /*** Change type "column" to "bar", "area", "line" or "pie"***/
-         type: "pie",
+         type: "bar",
          dataPoints: [
          { label: "banana", y: 18 },
          { label: "orange", y: 29 },

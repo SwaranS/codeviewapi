@@ -16,7 +16,12 @@ public class Graph {
 	public void setSecondValue(String secondValue) {
 		this.secondValue = secondValue;
 	}
-	
-	
 
+    @Override
+    public String toString() {
+        return "Graph{" +
+                "firstValue='" + firstValue + '\'' +
+                ", secondValue='" + secondValue + '\'' +
+                '}';
+    }
 }
