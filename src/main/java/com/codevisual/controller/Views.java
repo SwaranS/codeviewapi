@@ -55,7 +55,7 @@ public class Views {
 
 
     //Get parameter & reply json
-    @RequestMapping("/receiveInput")
+    @RequestMapping("/receiveUrlList")
     public
     @ResponseBody
     Graph ReceiveInput(@RequestParam(value = "name") String name)
