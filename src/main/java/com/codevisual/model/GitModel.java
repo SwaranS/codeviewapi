@@ -13,8 +13,15 @@ public class GitModel {
     private long firstCommitTime;
     private long lastCommitTime;
     private int numberOfCommits;
-    private List<RevCommit> getCommits;
+    private List<CommitInformation> commitInformationList;
 
+    public List<CommitInformation> getCommitInformationList() {
+        return commitInformationList;
+    }
+
+    public void setCommitInformationList(List<CommitInformation> commitInformationList) {
+        this.commitInformationList = commitInformationList;
+    }
 
     public int getNumberOfCommits() {
         return numberOfCommits;
@@ -49,24 +56,14 @@ public class GitModel {
         this.lastCommitTime = lastCommitTime;
     }
 
-    /*public List<RevCommit> getGetCommits() {
-        return getCommits;
-    }
-
-    public void setGetCommits(List<RevCommit> getCommits) {
-        this.getCommits = getCommits;
-    }
-*/
-
-
-
     public GitModel() {
     }
 
-    public GitModel(String author, long firstCommitTime, long lastCommitTime, int numberOfCommits) {
+    public GitModel(String author, long firstCommitTime, long lastCommitTime, int numberOfCommits, List<CommitInformation> commitInformationList) {
         Author = author;
         this.firstCommitTime = firstCommitTime;
         this.lastCommitTime = lastCommitTime;
         this.numberOfCommits = numberOfCommits;
+        this.commitInformationList = commitInformationList;
     }
 }
