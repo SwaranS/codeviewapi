@@ -22,7 +22,8 @@ import java.util.List;
 @Service
 public class GitModelGenerator {
 
-
+    @Autowired
+    DateConvertServices utilServices;
     @Autowired
     HeadParserService headParser;
     @Autowired
@@ -33,15 +34,16 @@ public class GitModelGenerator {
 
     public GitModel generateModel(String URL) throws IOException {
         repositoryHelper.getGit(gitHelper.getFileFromURL(URL));
-        return generateGitModel(repositoryHelper.getGit(gitHelper.getFileFromURL(URL)));
+        return generateGitModel(repositoryHelper.getGit(gitHelper.getFileFromURL(URL)),URL);
     }
 
-    public GitModel generateGitModel(Repository repository) {
+    public GitModel generateGitModel(Repository repository,String Url) {
 
         try {
-            GitModel gitModel = new GitModel(headParser.getAuthor(repository),
-                    headParser.firstCommitTime(repository),
-                    headParser.lastCommitTime(repository),
+            GitModel gitModel = new GitModel(Url,
+                    headParser.getAuthor(repository),
+                    utilServices.longToDate(headParser.firstCommitTime(repository)),
+                    utilServices.longToDate(headParser.lastCommitTime(repository)),
                     headParser.getCommits(repository).size(),
                     generateCommitInformationList(repository)
             );
@@ -68,7 +70,7 @@ public class GitModelGenerator {
                     commitVisitor.call().getRatio(),
                     commitVisitor.call().getInteraction(),
                     commitVisitor.call().getVolumes(),
-                    commitList.get(i).getCommitTime(),
+                    utilServices.intToDate(commitList.get(i).getCommitTime()),
                     commitList.get(i).getShortMessage(),
                     commitList.get(i).getAuthorIdent().getName(),
                     commitList.get(i).getAuthorIdent().getEmailAddress()

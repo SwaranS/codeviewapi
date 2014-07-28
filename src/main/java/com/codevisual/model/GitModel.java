@@ -2,6 +2,7 @@ package com.codevisual.model;
 
 import org.eclipse.jgit.revwalk.RevCommit;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,8 +12,8 @@ public class GitModel {
 
     private String author;
     private String url;
-    private long firstCommitTime;
-    private long lastCommitTime;
+    private String firstCommitTime;
+    private String lastCommitTime;
     private int numberOfCommits;
     private List<CommitInformation> commitInformationList;
 
@@ -49,27 +50,28 @@ public class GitModel {
         author = author;
     }
 
-    public long getFirstCommitTime() {
-        return firstCommitTime;
-    }
-
-    public void setFirstCommitTime(long firstCommitTime) {
-        this.firstCommitTime = firstCommitTime;
-    }
-
-    public long getLastCommitTime() {
-        return lastCommitTime;
-    }
-
-    public void setLastCommitTime(long lastCommitTime) {
-        this.lastCommitTime = lastCommitTime;
-    }
-
     public GitModel() {
     }
 
-    public GitModel(String author, long firstCommitTime, long lastCommitTime, int numberOfCommits, List<CommitInformation> commitInformationList) {
+    public String getFirstCommitTime() {
+        return firstCommitTime;
+    }
+
+    public void setFirstCommitTime(String firstCommitTime) {
+        this.firstCommitTime = firstCommitTime;
+    }
+
+    public String getLastCommitTime() {
+        return lastCommitTime;
+    }
+
+    public void setLastCommitTime(String lastCommitTime) {
+        this.lastCommitTime = lastCommitTime;
+    }
+
+    public GitModel(String author, String url, String firstCommitTime, String lastCommitTime, int numberOfCommits, List<CommitInformation> commitInformationList) {
         this.author = author;
+        this.url = url;
         this.firstCommitTime = firstCommitTime;
         this.lastCommitTime = lastCommitTime;
         this.numberOfCommits = numberOfCommits;

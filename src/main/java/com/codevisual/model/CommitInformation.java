@@ -1,5 +1,7 @@
 package com.codevisual.model;
 
+import java.util.Date;
+
 /**
  * Created by Home on 17/07/2014.
  */
@@ -8,7 +10,7 @@ public class CommitInformation {
     private double ratio;
     private double interaction;
     private double volume;
-    private int commitTime;
+    private String commitTime;
     private String shortMessage;
     private String committerName;
     private String committerEmail;
@@ -20,6 +22,7 @@ public class CommitInformation {
     public void setCyclomatic(int cyclomatic) {
         this.cyclomatic = cyclomatic;
     }
+
 
     public double getRatio() {
         return ratio;
@@ -45,13 +48,6 @@ public class CommitInformation {
         this.volume = volume;
     }
 
-    public int getCommitTime() {
-        return commitTime;
-    }
-
-    public void setCommitTime(int commitTime) {
-        this.commitTime = commitTime;
-    }
 
     public String getShortMessage() {
         return shortMessage;
@@ -77,7 +73,14 @@ public class CommitInformation {
         this.committerEmail = committerEmail;
     }
 
-    public CommitInformation(int cyclomatic, double ratio, double interaction, double volume, int commitTime, String shortMessage, String committerName, String committerEmail) {
+    public String getCommitTime() {
+        return commitTime;
+    }
+
+    public void setCommitTime(String commitTime) {
+        this.commitTime = commitTime;    }
+
+    public CommitInformation(int cyclomatic, double ratio, double interaction, double volume, String commitTime, String shortMessage, String committerName, String committerEmail) {
         this.cyclomatic = cyclomatic;
         this.ratio = ratio;
         this.interaction = interaction;
