@@ -1,10 +1,8 @@
 package com.codevisual.Services;
 
-
 import com.codevisual.git.Services.GitHelper;
 import com.codevisual.model.CommitInformation;
 import com.codevisual.model.CommitVisitor;
-import com.codevisual.model.HeaderInformation;
 import com.codevisual.parser.Repository.HeadParserService;
 import com.codevisual.parser.RepositoryHelper;
 import org.eclipse.jgit.api.Git;
@@ -14,14 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Home on 16/07/2014.
+ * Created by Home on 30/07/2014.
  */
 @Service
-public class GitModelGenerator {
+public class CommitInformationGenerator {
 
     @Autowired
     DateConvertServices utilServices;
@@ -32,27 +32,9 @@ public class GitModelGenerator {
     @Autowired
     GitHelper gitHelper;
 
-
-    public HeaderInformation generateModel(String URL) throws IOException {
-        repositoryHelper.getGit(gitHelper.getFileFromURL(URL));
-        return generateGitModel(repositoryHelper.getGit(gitHelper.getFileFromURL(URL)),URL);
-    }
-
-    public HeaderInformation generateGitModel(Repository repository,String Url) {
-
-        try {
-            HeaderInformation gitModel = new HeaderInformation(Url,
-                    headParser.getAuthor(repository),
-                    utilServices.longToDate(headParser.firstCommitTime(repository)),
-                    utilServices.longToDate(headParser.lastCommitTime(repository)),
-                    headParser.getCommits(repository).size()
-            );
-            return gitModel;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-
+    public List<CommitInformation> generateCommitInformationList(String url) throws Exception {
+        repositoryHelper.getGit(gitHelper.getFileFromURL(url));
+        return generateCommitInformationList(repositoryHelper.getGit(gitHelper.getFileFromURL(url)), url);
     }
 
     private List<CommitInformation> generateCommitInformationList(Repository repository,String url) throws Exception {
@@ -80,6 +62,5 @@ public class GitModelGenerator {
         return commitInformationList;
 
     }
-
 
 }

@@ -6,6 +6,7 @@ import java.util.Date;
  * Created by Home on 17/07/2014.
  */
 public class CommitInformation {
+    private String url;
     private int cyclomatic;
     private double ratio;
     private double interaction;
@@ -23,6 +24,13 @@ public class CommitInformation {
         this.cyclomatic = cyclomatic;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public double getRatio() {
         return ratio;
@@ -80,7 +88,8 @@ public class CommitInformation {
     public void setCommitTime(String commitTime) {
         this.commitTime = commitTime;    }
 
-    public CommitInformation(int cyclomatic, double ratio, double interaction, double volume, String commitTime, String shortMessage, String committerName, String committerEmail) {
+    public CommitInformation(String url, int cyclomatic, double ratio, double interaction, double volume, String commitTime, String shortMessage, String committerName, String committerEmail) {
+        this.url = url;
         this.cyclomatic = cyclomatic;
         this.ratio = ratio;
         this.interaction = interaction;

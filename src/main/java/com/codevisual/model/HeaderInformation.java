@@ -1,6 +1,7 @@
 package com.codevisual.model;
 
 import org.eclipse.jgit.revwalk.RevCommit;
+import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 import java.util.List;
@@ -8,14 +9,15 @@ import java.util.List;
 /**
  * Created by Home on 12/07/2014.
  */
-public class GitModel {
+public class HeaderInformation {
 
     private String author;
+    @Id
     private String url;
     private String firstCommitTime;
     private String lastCommitTime;
     private int numberOfCommits;
-    private List<CommitInformation> commitInformationList;
+
 
     public String getUrl() {
         return url;
@@ -23,14 +25,6 @@ public class GitModel {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public List<CommitInformation> getCommitInformationList() {
-        return commitInformationList;
-    }
-
-    public void setCommitInformationList(List<CommitInformation> commitInformationList) {
-        this.commitInformationList = commitInformationList;
     }
 
     public int getNumberOfCommits() {
@@ -50,7 +44,7 @@ public class GitModel {
         author = author;
     }
 
-    public GitModel() {
+    public HeaderInformation() {
     }
 
     public String getFirstCommitTime() {
@@ -69,12 +63,11 @@ public class GitModel {
         this.lastCommitTime = lastCommitTime;
     }
 
-    public GitModel(String author, String url, String firstCommitTime, String lastCommitTime, int numberOfCommits, List<CommitInformation> commitInformationList) {
+    public HeaderInformation(String author, String url, String firstCommitTime, String lastCommitTime, int numberOfCommits) {
         this.author = author;
         this.url = url;
         this.firstCommitTime = firstCommitTime;
         this.lastCommitTime = lastCommitTime;
         this.numberOfCommits = numberOfCommits;
-        this.commitInformationList = commitInformationList;
     }
 }

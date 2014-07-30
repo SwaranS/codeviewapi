@@ -7,17 +7,17 @@ import java.util.List;
  */
 public class GitModelList {
 
-    private List<GitModel> gitModelList;
+    private List<HeaderInformation> gitModelList;
 
-    public List<GitModel> getGitModelList() {
+    public List<HeaderInformation> getGitModelList() {
         return gitModelList;
     }
 
-    public void setGitModelList(List<GitModel> gitModelList) {
+    public void setGitModelList(List<HeaderInformation> gitModelList) {
         this.gitModelList = gitModelList;
     }
 
-    public GitModelList(List<GitModel> gitModelList) {
+    public GitModelList(List<HeaderInformation> gitModelList) {
         this.gitModelList = gitModelList;
     }
 }
