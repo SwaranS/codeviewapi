@@ -1,6 +1,7 @@
 package com.codevisual.controller;
 
 import com.codevisual.Services.GitModelGenerator;
+import com.codevisual.Services.MetricInformationGenerator;
 import com.codevisual.git.Services.GitHelper;
 import com.codevisual.model.HeaderInformation;
 import com.codevisual.model.GitModelList;
@@ -24,8 +25,9 @@ import java.util.List;
 public class ApiController {
 
     @Autowired
-    GitModelGenerator gitModelGenerator;
-
+    private GitModelGenerator gitModelGenerator;
+    @Autowired
+    private MetricInformationGenerator metricInformationGenerator;
     @Autowired
     private MetricInformationRepository metricInformationRepository;
     @Autowired
@@ -74,13 +76,10 @@ public class ApiController {
 
             }
             else{
-                return null;
-                //Have copied directory locally
-                //Add MetricInformation to list
-                //gitModelList.add(gitModelGenerator.generateModel(listUrls.get(i)));
+                metricInformationList.add(metricInformationGenerator.generateMetricInformation(listUrls.get(i)));
 
             }
-            //If exits locally and outdated
+           
         }
 
         return new MetricInformationList(metricInformationList);
