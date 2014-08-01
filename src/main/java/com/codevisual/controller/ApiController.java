@@ -79,7 +79,7 @@ public class ApiController {
                 metricInformationList.add(metricInformationGenerator.generateMetricInformation(listUrls.get(i)));
 
             }
-           
+
         }
 
         return new MetricInformationList(metricInformationList);

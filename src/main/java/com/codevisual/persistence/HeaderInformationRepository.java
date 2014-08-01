@@ -34,8 +34,8 @@ public class HeaderInformationRepository implements Repository<HeaderInformation
     }
 
     @Override
-    public HeaderInformation getObject(String id) {
-        return mongoTemplate.findOne(new Query(Criteria.where("id").is(id)),
+    public HeaderInformation getObject(String url) {
+        return mongoTemplate.findOne(new Query(Criteria.where("url").is(url)),
                 HeaderInformation.class);
     }
 
