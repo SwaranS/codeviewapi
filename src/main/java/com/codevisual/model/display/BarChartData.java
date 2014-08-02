@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class BarChartData {
 
     private ArrayList<String> labels;
-    private DataSet dataSet;
+    private ArrayList<DataSet> datasets;
 
     public ArrayList<String> getLabels() {
         return labels;
@@ -19,16 +19,16 @@ public class BarChartData {
         this.labels = labels;
     }
 
-    public DataSet getDataSet() {
-        return dataSet;
+    public ArrayList<DataSet> getdatasets() {
+        return datasets;
     }
 
-    public void setDataSet(DataSet dataSet) {
-        this.dataSet = dataSet;
+    public void setdatasets(ArrayList<DataSet> datasets) {
+        this.datasets = datasets;
     }
 
-    public BarChartData(ArrayList<String> labels, DataSet dataSet) {
+    public BarChartData(ArrayList<String> labels, ArrayList<DataSet> datasets) {
         this.labels = labels;
-        this.dataSet = dataSet;
+        this.datasets = datasets;
     }
 }

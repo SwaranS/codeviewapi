@@ -1,0 +1,15 @@
+{"commitInformationList":
+    [
+        {
+            "url": "https://github.com/xiansong/codemetric.git",
+            "cyclomatic": 207,
+            "ratio": 58.691912306466456,
+            "interaction": 1.8845673134818086,
+            "volume": 1458.573372635572,
+            "commitTime": "Fri Aug 16 16:25:39 BST 2013",
+            "shortMessage": "fix index.html regular expression",
+            "committerName": "xiansongzeng",
+            "committerEmail": "xiansongzeng@xiansong"
+        }
+    ]
+}
