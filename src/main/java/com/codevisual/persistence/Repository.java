@@ -9,6 +9,7 @@ import com.mongodb.WriteResult;
 
 public interface Repository<T> {
 
+
     public List<T> getAllObjects();
 
     public void saveObject(T object);

@@ -40,4 +40,5 @@ public class MetricInformationGenerator {
         return commitInformationRepository.getCommitInformationByUrl(url);
     }
 
+
 }

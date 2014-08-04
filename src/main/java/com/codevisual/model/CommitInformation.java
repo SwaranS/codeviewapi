@@ -15,14 +15,9 @@ public class CommitInformation {
     private String shortMessage;
     private String committerName;
     private String committerEmail;
-
-    public int getCyclomatic() {
-        return cyclomatic;
-    }
-
-    public void setCyclomatic(int cyclomatic) {
-        this.cyclomatic = cyclomatic;
-    }
+    private int javaFilesCount;
+    private int linesOfCode;
+    private int linesOfComments;
 
     public String getUrl() {
         return url;
@@ -30,6 +25,14 @@ public class CommitInformation {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public int getCyclomatic() {
+        return cyclomatic;
+    }
+
+    public void setCyclomatic(int cyclomatic) {
+        this.cyclomatic = cyclomatic;
     }
 
     public double getRatio() {
@@ -56,6 +59,13 @@ public class CommitInformation {
         this.volume = volume;
     }
 
+    public String getCommitTime() {
+        return commitTime;
+    }
+
+    public void setCommitTime(String commitTime) {
+        this.commitTime = commitTime;
+    }
 
     public String getShortMessage() {
         return shortMessage;
@@ -81,14 +91,31 @@ public class CommitInformation {
         this.committerEmail = committerEmail;
     }
 
-    public String getCommitTime() {
-        return commitTime;
+    public int getJavaFilesCount() {
+        return javaFilesCount;
     }
 
-    public void setCommitTime(String commitTime) {
-        this.commitTime = commitTime;    }
+    public void setJavaFilesCount(int javaFilesCount) {
+        this.javaFilesCount = javaFilesCount;
+    }
 
-    public CommitInformation(String url, int cyclomatic, double ratio, double interaction, double volume, String commitTime, String shortMessage, String committerName, String committerEmail) {
+    public int getLinesOfCode() {
+        return linesOfCode;
+    }
+
+    public void setLinesOfCode(int linesOfCode) {
+        this.linesOfCode = linesOfCode;
+    }
+
+    public int getLinesOfComments() {
+        return linesOfComments;
+    }
+
+    public void setLinesOfComments(int linesOfComments) {
+        this.linesOfComments = linesOfComments;
+    }
+
+    public CommitInformation(String url, int cyclomatic, double ratio, double interaction, double volume, String commitTime, String shortMessage, String committerName, String committerEmail, int javaFilesCount, int linesOfCode, int linesOfComments) {
         this.url = url;
         this.cyclomatic = cyclomatic;
         this.ratio = ratio;
@@ -98,5 +125,8 @@ public class CommitInformation {
         this.shortMessage = shortMessage;
         this.committerName = committerName;
         this.committerEmail = committerEmail;
+        this.javaFilesCount = javaFilesCount;
+        this.linesOfCode = linesOfCode;
+        this.linesOfComments = linesOfComments;
     }
 }

@@ -22,6 +22,12 @@ public class HeaderInformationRepository implements Repository<HeaderInformation
     @Autowired
     MongoTemplate mongoTemplate;
 
+    public boolean recordExists(String url){
+      if(getObject(url)==null){
+        return false;
+      }
+        return true;
+    }
 
     @Override
     public List<HeaderInformation> getAllObjects() {

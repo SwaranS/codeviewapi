@@ -1,16 +1,10 @@
 package com.codevisual.persistence;
 
 import com.codevisual.Services.CommitInformationGenerator;
-import com.codevisual.Services.DateConvertServices;
 import com.codevisual.Services.HeaderInformationGenerator;
-import com.codevisual.Services.MetricInformationGenerator;
-import com.codevisual.git.Services.GitHelper;
 import com.codevisual.model.CommitInformation;
 import com.codevisual.model.HeaderInformation;
 import com.codevisual.model.rest.MetricInformation;
-import com.codevisual.parser.Repository.HeadParserService;
-import com.codevisual.parser.RepositoryHelper;
-import org.eclipse.jgit.lib.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +16,6 @@ import java.util.List;
 @Service
 public class MetricInformationRepository {
 
-    //Generate MetricInformation
-    //Save header information
-    //Save commit information
     @Autowired
     private HeaderInformationGenerator headerInformationGenerator;
     @Autowired
@@ -45,6 +36,18 @@ public class MetricInformationRepository {
                 commitInformationList);
     }
 
+    public MetricInformation returnMetricInformation(String url) throws Exception {
+        HeaderInformation headerInformation = returnHeaderInformation(url);
+        List<CommitInformation> commitInformationList = returnCommitInformation(url);
+        return new MetricInformation(headerInformation.getAuthor(),
+                headerInformation.getUrl(),
+                headerInformation.getFirstCommitTime(),
+                headerInformation.getLastCommitTime(),
+                headerInformation.getNumberOfCommits(),
+                commitInformationList);
+    }
+
+
     private HeaderInformation saveAndReturnHeaderInformation(String url) throws Exception {
         headerInformationRepository.saveObject(headerInformationGenerator.generateCommitInformationFromUrl(url));
         return headerInformationGenerator.generateCommitInformationFromUrl(url);
@@ -58,4 +61,11 @@ public class MetricInformationRepository {
         return commitInformationList;
     }
 
+
+    private HeaderInformation returnHeaderInformation(String url) throws Exception {
+        return headerInformationGenerator.generateCommitInformationFromUrl(url);
+    }
+    private List<CommitInformation> returnCommitInformation(String url) throws Exception {
+        return  commitInformationRepository.getAllObjects();
+    }
 }

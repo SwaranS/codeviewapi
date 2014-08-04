@@ -31,6 +31,8 @@ public class GitModelGenerator {
     RepositoryHelper repositoryHelper;
     @Autowired
     GitHelper gitHelper;
+    @Autowired
+    LinesOfCodeCalculatorService linesOfCodeCalculatorService;
 
 
     public HeaderInformation generateModel(String URL) throws IOException {
@@ -74,7 +76,11 @@ public class GitModelGenerator {
                     utilServices.intToDate(commitList.get(i).getCommitTime()),
                     commitList.get(i).getShortMessage(),
                     commitList.get(i).getAuthorIdent().getName(),
-                    commitList.get(i).getAuthorIdent().getEmailAddress()
+                    commitList.get(i).getAuthorIdent().getEmailAddress(),
+                    commitVisitor.call().getUcs().size(),
+                    linesOfCodeCalculatorService.linesOfCodeFromCompilationUnit(headParser.getJavaCompilationUnit((commitList.get(i)),repository)),
+                    linesOfCodeCalculatorService.linesOfCommentsFromCompilationUnit(headParser.getJavaCompilationUnit((commitList.get(i)),repository))
+
             ));
         }
         return commitInformationList;

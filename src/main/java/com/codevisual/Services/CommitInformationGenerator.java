@@ -11,9 +11,6 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +28,8 @@ public class CommitInformationGenerator {
     RepositoryHelper repositoryHelper;
     @Autowired
     GitHelper gitHelper;
+    @Autowired
+    LinesOfCodeCalculatorService linesOfCodeCalculatorService;
 
     public List<CommitInformation> generateCommitInformationList(String url) throws Exception {
         repositoryHelper.getGit(gitHelper.getFileFromURL(url));
@@ -56,7 +55,11 @@ public class CommitInformationGenerator {
                     utilServices.intToDate(commitList.get(i).getCommitTime()),
                     commitList.get(i).getShortMessage(),
                     commitList.get(i).getAuthorIdent().getName(),
-                    commitList.get(i).getAuthorIdent().getEmailAddress()
+                    commitList.get(i).getAuthorIdent().getEmailAddress(),
+                    commitVisitor.call().getUcs().size(),
+                    linesOfCodeCalculatorService.linesOfCodeFromCompilationUnit(headParser.getJavaCompilationUnit((commitList.get(i)),repository)),
+                    linesOfCodeCalculatorService.linesOfCommentsFromCompilationUnit(headParser.getJavaCompilationUnit((commitList.get(i)),repository))
+
             ));
         }
         return commitInformationList;

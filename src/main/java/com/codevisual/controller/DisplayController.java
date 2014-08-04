@@ -46,6 +46,16 @@ public class DisplayController {
                 "rgba(220,220,220,0.75)",
                 "rgba(220,220,220,1)",
                 data));
+        dataSets.add(new DataSet("rgba(220,220,220,0.5)",
+                "rgba(220,220,220,0.8)",
+                "rgba(220,220,220,0.75)",
+                "rgba(220,220,220,1)",
+                data));
+        dataSets.add(new DataSet("rgba(220,220,220,0.5)",
+                "rgba(220,220,220,0.8)",
+                "rgba(220,220,220,0.75)",
+                "rgba(220,220,220,1)",
+                data));
         return new BarChartData(labels,dataSets );
 
     }
@@ -54,5 +64,10 @@ public class DisplayController {
     public String displayDynamic() {
 
         return "displayDynamic";
+    }
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String index() {
+
+        return "index";
     }
 }
