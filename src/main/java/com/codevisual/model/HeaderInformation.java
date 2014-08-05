@@ -14,10 +14,17 @@ public class HeaderInformation {
     private String author;
     @Id
     private String url;
-    private String firstCommitTime;
-    private String lastCommitTime;
+    private long firstCommitTime;
+    private long lastCommitTime;
     private int numberOfCommits;
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
     public String getUrl() {
         return url;
@@ -25,6 +32,22 @@ public class HeaderInformation {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public long getFirstCommitTime() {
+        return firstCommitTime;
+    }
+
+    public void setFirstCommitTime(long firstCommitTime) {
+        this.firstCommitTime = firstCommitTime;
+    }
+
+    public long getLastCommitTime() {
+        return lastCommitTime;
+    }
+
+    public void setLastCommitTime(long lastCommitTime) {
+        this.lastCommitTime = lastCommitTime;
     }
 
     public int getNumberOfCommits() {
@@ -35,35 +58,7 @@ public class HeaderInformation {
         this.numberOfCommits = numberOfCommits;
     }
 
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        author = author;
-    }
-
-    public HeaderInformation() {
-    }
-
-    public String getFirstCommitTime() {
-        return firstCommitTime;
-    }
-
-    public void setFirstCommitTime(String firstCommitTime) {
-        this.firstCommitTime = firstCommitTime;
-    }
-
-    public String getLastCommitTime() {
-        return lastCommitTime;
-    }
-
-    public void setLastCommitTime(String lastCommitTime) {
-        this.lastCommitTime = lastCommitTime;
-    }
-
-    public HeaderInformation(String author, String url, String firstCommitTime, String lastCommitTime, int numberOfCommits) {
+    public HeaderInformation(String author, String url, long firstCommitTime, long lastCommitTime, int numberOfCommits) {
         this.author = author;
         this.url = url;
         this.firstCommitTime = firstCommitTime;

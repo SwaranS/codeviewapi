@@ -34,8 +34,8 @@ public class HeaderInformationGenerator {
             HeaderInformation gitModel = new HeaderInformation(
                     headParser.getAuthor(repository),
                     Url,
-                    utilServices.longToDate(headParser.firstCommitTime(repository)),
-                    utilServices.longToDate(headParser.lastCommitTime(repository)),
+                    headParser.firstCommitTime(repository),
+                    headParser.lastCommitTime(repository),
                     headParser.getCommits(repository).size()
             );
             return gitModel;

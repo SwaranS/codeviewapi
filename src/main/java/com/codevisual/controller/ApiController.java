@@ -4,10 +4,12 @@ import com.codevisual.Services.GitModelGenerator;
 import com.codevisual.Services.MetricInformationGenerator;
 import com.codevisual.Services.UrlProcessing;
 import com.codevisual.git.Services.GitHelper;
+import com.codevisual.model.CommitInformation;
 import com.codevisual.model.HeaderInformation;
 import com.codevisual.model.GitModelList;
 import com.codevisual.model.rest.MetricInformation;
 import com.codevisual.model.rest.MetricInformationList;
+import com.codevisual.persistence.CommitInformationRepository;
 import com.codevisual.persistence.HeaderInformationRepository;
 import com.codevisual.persistence.MetricInformationRepository;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -37,6 +39,8 @@ public class ApiController {
     private HeaderInformationRepository headerInformationRepository;
     @Autowired
     private UrlProcessing urlProcessing;
+    @Autowired
+    private CommitInformationRepository commitInformationRepository;
 
 
     @RequestMapping(value = "/urlList", method = RequestMethod.GET)
@@ -70,5 +74,11 @@ public class ApiController {
         return new MetricInformationList(metricInformationList);
     }
 
+    @RequestMapping(value = "/sortedCommitData", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<CommitInformation> sortedCommitData(@RequestParam(value = "urlList") String urlList) throws IOException, GitAPIException {
+       return commitInformationRepository.getObjectDateSorted(urlList);
+    }
 
-}
+    }

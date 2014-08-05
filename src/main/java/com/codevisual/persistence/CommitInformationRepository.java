@@ -1,7 +1,6 @@
 package com.codevisual.persistence;
 
 import com.codevisual.model.CommitInformation;
-import com.codevisual.model.Person;
 import com.mongodb.WriteResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -11,6 +10,9 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 
 /**
  * Created by Home on 30/07/2014.
@@ -39,6 +41,12 @@ public class CommitInformationRepository implements Repository<CommitInformation
     public CommitInformation getObject(String id) {
         return mongoTemplate.findOne(new Query(Criteria.where("id").is(id)),
                 CommitInformation.class);
+    }
+    public List<CommitInformation> getObjectDateSorted(String url) {
+        Query query = new Query(Criteria.where("url").is(url)).with(new Sort(Direction.DESC,"commitTime"));
+        return mongoTemplate.find(query,
+                CommitInformation.class);
+
     }
 
     @Override

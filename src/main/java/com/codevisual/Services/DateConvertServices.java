@@ -17,4 +17,6 @@ public class DateConvertServices {
     public String intToDate(int dateInt) {
         return new Date(dateInt * 1000L).toString();
     }
+
+    public Long intToLong(int dateInt){return dateInt * 1000L;}
 }

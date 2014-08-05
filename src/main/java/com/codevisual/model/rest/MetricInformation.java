@@ -10,8 +10,8 @@ import java.util.List;
 public class MetricInformation {
     private String author;
     private String url;
-    private String firstCommitTime;
-    private String lastCommitTime;
+    private long firstCommitTime;
+    private long lastCommitTime;
     private int numberOfCommits;
     private List<CommitInformation> commitInformationList;
 
@@ -31,19 +31,19 @@ public class MetricInformation {
         this.url = url;
     }
 
-    public String getFirstCommitTime() {
+    public long getFirstCommitTime() {
         return firstCommitTime;
     }
 
-    public void setFirstCommitTime(String firstCommitTime) {
+    public void setFirstCommitTime(long firstCommitTime) {
         this.firstCommitTime = firstCommitTime;
     }
 
-    public String getLastCommitTime() {
+    public long getLastCommitTime() {
         return lastCommitTime;
     }
 
-    public void setLastCommitTime(String lastCommitTime) {
+    public void setLastCommitTime(long lastCommitTime) {
         this.lastCommitTime = lastCommitTime;
     }
 
@@ -63,7 +63,7 @@ public class MetricInformation {
         this.commitInformationList = commitInformationList;
     }
 
-    public MetricInformation(String author, String url, String firstCommitTime, String lastCommitTime, int numberOfCommits, List<CommitInformation> commitInformationList) {
+    public MetricInformation(String author, String url, long firstCommitTime, long lastCommitTime, int numberOfCommits, List<CommitInformation> commitInformationList) {
         this.author = author;
         this.url = url;
         this.firstCommitTime = firstCommitTime;

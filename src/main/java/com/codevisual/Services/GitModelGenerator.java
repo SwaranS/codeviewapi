@@ -45,8 +45,8 @@ public class GitModelGenerator {
         try {
             HeaderInformation gitModel = new HeaderInformation(Url,
                     headParser.getAuthor(repository),
-                    utilServices.longToDate(headParser.firstCommitTime(repository)),
-                    utilServices.longToDate(headParser.lastCommitTime(repository)),
+                    headParser.firstCommitTime(repository),
+                    headParser.lastCommitTime(repository),
                     headParser.getCommits(repository).size()
             );
             return gitModel;
@@ -73,7 +73,7 @@ public class GitModelGenerator {
                     commitVisitor.call().getRatio(),
                     commitVisitor.call().getInteraction(),
                     commitVisitor.call().getVolumes(),
-                    utilServices.intToDate(commitList.get(i).getCommitTime()),
+                    utilServices.intToLong(commitList.get(i).getCommitTime()),
                     commitList.get(i).getShortMessage(),
                     commitList.get(i).getAuthorIdent().getName(),
                     commitList.get(i).getAuthorIdent().getEmailAddress(),

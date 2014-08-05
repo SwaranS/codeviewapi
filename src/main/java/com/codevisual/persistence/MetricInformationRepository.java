@@ -66,6 +66,6 @@ public class MetricInformationRepository {
         return headerInformationGenerator.generateCommitInformationFromUrl(url);
     }
     private List<CommitInformation> returnCommitInformation(String url) throws Exception {
-        return  commitInformationRepository.getAllObjects();
+        return  commitInformationRepository.getCommitInformationByUrl(url);
     }
 }

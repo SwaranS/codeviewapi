@@ -52,7 +52,7 @@ public class CommitInformationGenerator {
                     commitVisitor.call().getRatio(),
                     commitVisitor.call().getInteraction(),
                     commitVisitor.call().getVolumes(),
-                    utilServices.intToDate(commitList.get(i).getCommitTime()),
+                    utilServices.intToLong(commitList.get(i).getCommitTime()),
                     commitList.get(i).getShortMessage(),
                     commitList.get(i).getAuthorIdent().getName(),
                     commitList.get(i).getAuthorIdent().getEmailAddress(),

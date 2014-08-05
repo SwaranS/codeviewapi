@@ -1,9 +1,11 @@
 package com.codevisual.controller;
 
+import com.codevisual.Services.BarChartDataGenerator;
 import com.codevisual.model.Graph;
 import com.codevisual.model.Person;
 import com.codevisual.model.display.BarChartData;
 import com.codevisual.model.display.DataSet;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +23,18 @@ import java.util.Locale;
  */
 @Controller
 public class DisplayController {
+    @Autowired
+    private BarChartDataGenerator barChartDataGenerator;
+
+
+
 
     @RequestMapping(value = "/barChartData", method = RequestMethod.GET)
     public
     @ResponseBody
-    BarChartData barChartData(@RequestParam(value = "name", required = false) String name) {
-        ArrayList<String> labels = new ArrayList<>();
+    BarChartData barChartData(@RequestParam(value = "url", required = false) String url) {
+        return barChartDataGenerator.barChartDataForUrl(url);
+    /*    ArrayList<String> labels = new ArrayList<>();
         labels.add("January");
         labels.add("February");
         labels.add("March");
@@ -56,7 +64,7 @@ public class DisplayController {
                 "rgba(220,220,220,0.75)",
                 "rgba(220,220,220,1)",
                 data));
-        return new BarChartData(labels,dataSets );
+        return new BarChartData(labels,dataSets );*/
 
     }
 
