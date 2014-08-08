@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +11,7 @@
 
     <title>Starter Template for Bootstrap</title>
     <script src="resources/js/Chart.js"></script>
+    <script type="text/javascript" src="resources/js/jquery-2.1.1.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -56,42 +58,17 @@
 <div >
 
     <div class="container" style="width: 65%">
-        <canvas id="canvas" height="450" width="600"></canvas>
+        <canvas id="canvas" height="650" width="800"></canvas>
     </div>
 
 
     <script>
-        var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+        var response = $.ajax({ type: "GET",
+            url: "http://localhost:8080/barChartData?url=https://github.com/xiansong/codemetric.git",
+            async: false
+        }).responseText;
 
-        var barChartData = {
-            labels : ["January","February","March","April","May","June","July"],
-            datasets : [
-                {
-                    fillColor : "rgba(220,220,220,0.5)",
-                    strokeColor : "rgba(220,220,220,0.8)",
-                    highlightFill: "rgba(220,220,220,0.75)",
-                    highlightStroke: "rgba(220,220,220,1)",
-                    data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-                },
-                {
-                    fillColor : "rgba(151,187,205,0.5)",
-                    strokeColor : "rgba(151,187,205,0.8)",
-                    highlightFill : "rgba(151,187,205,0.75)",
-                    highlightStroke : "rgba(151,187,205,1)",
-                    data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-                }
-                ,
-                {
-                    fillColor : "rgba(151,187,205,0.5)",
-                    strokeColor : "rgba(151,187,205,0.8)",
-                    highlightFill : "rgba(151,187,205,0.75)",
-                    highlightStroke : "rgba(151,187,205,1)",
-                    data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-                }
-            ]
-
-        }
-
+        var barChartData = jQuery.parseJSON(response);
         window.onload = function(){
             var ctx = document.getElementById("canvas").getContext("2d");
             window.myBar = new Chart(ctx).Bar(barChartData, {
@@ -107,7 +84,7 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="resources/js/jquery-2.1.1.js"></script>
+
 <script src="resources/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

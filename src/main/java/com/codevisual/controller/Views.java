@@ -42,14 +42,6 @@ public class Views {
     @RequestMapping(value = "/display", method = RequestMethod.GET)
     public String display(Locale locale, Model model) {
         logger.info("Welcome home! The client locale is {}.", locale);
-
-        Date date = new Date();
-        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-        String formattedDate = dateFormat.format(date);
-
-        model.addAttribute("serverTime", formattedDate);
-
         return "display";
     }
 
@@ -71,8 +63,8 @@ public class Views {
     @RequestMapping("/receiveUrlList")
     public
     @ResponseBody
-    Graph ReceiveInput(@RequestParam(value = "name") String name)
-    {logger.info("Welcome home! The client locale is {}.");
+    Graph ReceiveInput(@RequestParam(value = "name") String name) {
+        logger.info("Welcome home! The client locale is {}.");
         Graph jsonGraph = new Graph();
         jsonGraph.setFirstValue(name);
         jsonGraph.setSecondValue("Second");
@@ -94,8 +86,6 @@ public class Views {
 
         return "post";
     }
-
-
 
 
 }

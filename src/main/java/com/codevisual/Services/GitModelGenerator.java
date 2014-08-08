@@ -1,12 +1,9 @@
 package com.codevisual.Services;
 
 
-import com.codevisual.git.Services.GitHelper;
 import com.codevisual.model.CommitInformation;
 import com.codevisual.model.CommitVisitor;
 import com.codevisual.model.HeaderInformation;
-import com.codevisual.parser.Repository.HeadParserService;
-import com.codevisual.parser.RepositoryHelper;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;

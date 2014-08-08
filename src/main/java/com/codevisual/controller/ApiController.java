@@ -1,12 +1,9 @@
 package com.codevisual.controller;
 
-import com.codevisual.Services.GitModelGenerator;
 import com.codevisual.Services.MetricInformationGenerator;
 import com.codevisual.Services.UrlProcessing;
-import com.codevisual.git.Services.GitHelper;
+import com.codevisual.Services.GitHelper;
 import com.codevisual.model.CommitInformation;
-import com.codevisual.model.HeaderInformation;
-import com.codevisual.model.GitModelList;
 import com.codevisual.model.rest.MetricInformation;
 import com.codevisual.model.rest.MetricInformationList;
 import com.codevisual.persistence.CommitInformationRepository;
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
