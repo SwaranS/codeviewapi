@@ -1,9 +1,11 @@
 package com.codevisual.controller;
 
-import com.codevisual.Services.MetricInformationGenerator;
-import com.codevisual.Services.UrlProcessing;
+import com.codevisual.Services.ApiDataGeneratorService;
 import com.codevisual.Services.GitHelper;
+import com.codevisual.Services.MetricInformationGenerator;
+import com.codevisual.Services.StringProcessing;
 import com.codevisual.model.CommitInformation;
+import com.codevisual.model.CommitInformationDifference;
 import com.codevisual.model.rest.MetricInformation;
 import com.codevisual.model.rest.MetricInformationList;
 import com.codevisual.persistence.CommitInformationRepository;
@@ -12,7 +14,10 @@ import com.codevisual.persistence.MetricInformationRepository;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,9 +39,11 @@ public class ApiController {
     @Autowired
     private HeaderInformationRepository headerInformationRepository;
     @Autowired
-    private UrlProcessing urlProcessing;
+    private StringProcessing stringProcessing;
     @Autowired
     private CommitInformationRepository commitInformationRepository;
+    @Autowired
+    private ApiDataGeneratorService apiDataGeneratorService;
 
 
     @RequestMapping(value = "/urlList", method = RequestMethod.GET)
@@ -44,7 +51,7 @@ public class ApiController {
     @ResponseBody
     MetricInformationList receiveUrlList(@RequestParam(value = "urlList") String urlList) throws IOException, GitAPIException {
 
-        List<String> uniqueUrlList = urlProcessing.commaSeparateUrl(urlList);
+        List<String> uniqueUrlList = stringProcessing.commaSeparateUrl(urlList);
         List<MetricInformation> metricInformationList = new ArrayList<>();
         for (String uniqueUrl : uniqueUrlList) {
             if (!headerInformationRepository.recordExists(uniqueUrl)) {
@@ -74,7 +81,25 @@ public class ApiController {
     public
     @ResponseBody
     List<CommitInformation> sortedCommitData(@RequestParam(value = "urlList") String urlList) throws IOException, GitAPIException {
-       return commitInformationRepository.getObjectDateSorted(urlList);
+        return commitInformationRepository.getObjectDateSorted(urlList);
     }
 
+    @RequestMapping(value = "/contributionsByUsers", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<CommitInformation> contributionsByUsers(@RequestParam(value = "urlList") String urlList, @RequestParam(value = "committerName") String committerName) throws IOException, GitAPIException {
+        return apiDataGeneratorService.searchUserContributionInRepositories(urlList, committerName);
+
     }
+
+    @RequestMapping(value = "/changesByUsers", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<CommitInformationDifference> changesByUsers(@RequestParam(value = "urlList") String urlList, @RequestParam(value = "committerName") String committerName) throws IOException, GitAPIException {
+        return apiDataGeneratorService.changesByUserInRepositories(urlList, committerName);
+
+    }
+
+
+
+}
