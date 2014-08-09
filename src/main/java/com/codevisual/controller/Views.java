@@ -46,16 +46,8 @@ public class Views {
     }
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public String dashboard(Locale locale, Model model) {
-        logger.info("Welcome home! The client locale is {}.", locale);
-
-        Date date = new Date();
-        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-        String formattedDate = dateFormat.format(date);
-
-        model.addAttribute("serverTime", formattedDate);
-
+    public String dashboard( Model model,@RequestParam(value = "urlList") String urlList) {
+        model.addAttribute("url",urlList);
         return "dashboard";
     }
 

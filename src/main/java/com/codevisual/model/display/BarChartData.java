@@ -6,6 +6,7 @@ import java.util.Arrays;
 /**
  * Created by Home on 02/08/2014.
  */
+
 public class BarChartData {
 
     private ArrayList<String> labels;
@@ -31,4 +32,6 @@ public class BarChartData {
         this.labels = labels;
         this.datasets = datasets;
     }
+
+
 }

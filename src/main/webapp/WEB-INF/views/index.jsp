@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>View Metric Data for Project</title>
     <script src="resources/js/Chart.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +50,7 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a id = "aboutButton" href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -58,11 +58,11 @@
 </div>
 <div class="container">
 
-    <form class="form-signin" action="urlList" method="get" role="form">
-        <h2 class="form-signin-heading" >Please sign in</h2>
-        <input type="text" name="urlList" class="form-control" placeholder="urlList" required autofocus>
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <form class="form-signin" action="dashboard" method="get" role="form">
+        <h2 class="form-signin-heading" >Enter Url List</h2>
+        <textarea class="form-control" name="urlList" rows="3"></textarea>
+       </br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Generate Data</button>
     </form>
 
 </div>

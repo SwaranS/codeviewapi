@@ -23,7 +23,7 @@
 
 
     var response = $.ajax({ type: "GET",
-        url: "http://localhost:8080/barChartData?url=https://github.com/xiansong/codemetric.git",
+        url: "http://localhost:8080/barChartData?url=https://github.com/SwaranS/codeviewapi.git",
         async: false
     }).responseText;
 

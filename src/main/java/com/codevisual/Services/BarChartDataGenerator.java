@@ -3,8 +3,7 @@ package com.codevisual.Services;
 import com.codevisual.model.CommitInformation;
 import com.codevisual.model.display.BarChartData;
 import com.codevisual.model.display.DataSet;
-import com.codevisual.model.rest.MetricInformation;
-import com.codevisual.model.rest.MetricInformationList;
+import com.codevisual.persistence.CommitInformationRepository;
 import com.codevisual.persistence.MetricInformationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,9 +23,15 @@ public class BarChartDataGenerator {
     @Autowired
     private MetricInformationRepository metricInformationRepository;
 
+    @Autowired
+    private CommitInformationRepository commitInformationRepository;
+
+
     public BarChartData barChartDataForUrl(String url){
         try {
-            return barChartDataFromMetricInformationList(metricInformationRepository.returnMetricInformation(url).getCommitInformationList());
+            return barChartDataFromMetricInformationList(commitInformationRepository.getObjectDateSortedAsc(url)
+            );
+
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -40,14 +45,17 @@ public class BarChartDataGenerator {
         }
         ArrayList<String> data = new ArrayList<>();
         for(CommitInformation commitInformation:commitInformationList){
-            data.add(String.valueOf(commitInformation.getLinesOfCode()));
+            data.add(String.valueOf(commitInformation.getLinesOfComments()));
         }
+
         ArrayList<DataSet> dataSets = new ArrayList<>();
-        dataSets.add(new DataSet("rgba(220,220,220,0.5)",
+        dataSets.add(new DataSet(
+                "rgba(220,220,220,0.5)",
                 "rgba(220,220,220,0.8)",
                 "rgba(220,220,220,0.75)",
                 "rgba(220,220,220,1)",
                 data));
+
         return new BarChartData(labels,dataSets);
     }
 }

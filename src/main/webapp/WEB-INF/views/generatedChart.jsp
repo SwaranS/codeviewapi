@@ -8,8 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-    <title>View Metric Data for Project</title>
 
+    <title>Starter Template for Bootstrap</title>
     <script src="resources/js/Chart.js"></script>
     <script type="text/javascript" src="resources/js/jquery-2.1.1.js"></script>
     <!-- Bootstrap core CSS -->
@@ -33,6 +33,7 @@
 </head>
 
 <body>
+
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -47,7 +48,7 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a id = "aboutButton" href="#about">About</a></li>
+                <li><a id = "btnSubmit" href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -59,6 +60,30 @@
     <div class="container" style="width: 65%">
         <canvas id="canvas" height="650" width="800"></canvas>
     </div>
+
+
+    <script>
+        $(document).ready(function() {
+            $("#btnSubmit").click(function(){
+                loadCanvas(returnData("http://localhost:8080/barChartData?url=https://github.com/SwaranS/codeviewapi.git"));
+            });
+        });
+        function returnData(urlIn){
+        var response = $.ajax({ type: "GET",
+            url: urlIn,
+            async: false
+        }).responseText;
+
+        return  jQuery.parseJSON(response);
+        }
+        function loadCanvas(barChartData){
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myBar = new Chart(ctx).Bar(barChartData, {
+                responsive : true
+            });
+        }
+
+    </script>
 
 
     <script>
@@ -76,31 +101,6 @@
         }
 
     </script>
-
-    <script>
-        $(document).ready(function() {
-            $("#aboutButton").click(function(){
-                loadCanvas(returnData("http://localhost:8080/barChartData?url=${url}"));
-            });
-        });
-        function returnData(urlIn){
-            var response = $.ajax({ type: "GET",
-                url: urlIn,
-                async: false
-            }).responseText;
-
-            return  jQuery.parseJSON(response);
-        }
-        function loadCanvas(barChartData){
-            var ctx = document.getElementById("canvas").getContext("2d");
-            window.myBar = new Chart(ctx).Bar(barChartData, {
-                responsive : true
-            });
-        }
-
-    </script>
-
-
 </div><!-- /.container -->
 
 

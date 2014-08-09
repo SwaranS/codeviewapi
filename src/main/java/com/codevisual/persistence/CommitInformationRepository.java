@@ -52,6 +52,12 @@ public class CommitInformationRepository implements Repository<CommitInformation
 
     }
 
+    public List<CommitInformation> getObjectDateSortedAsc(String url) {
+        Query query = new Query(Criteria.where("url").is(url)).with(new Sort(Direction.ASC, "commitTime"));
+        return mongoTemplate.find(query,
+                CommitInformation.class);
+
+    }
     public List<CommitInformation> getContributionByUser(String url, String committerName) {
         Query query = new Query();
         Criteria criteria = new Criteria();

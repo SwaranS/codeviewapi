@@ -12,6 +12,7 @@ public class DataSet {
     private String highlightStroke;
     private ArrayList<String> data;
 
+
     public String getFillColor() {
         return fillColor;
     }
@@ -52,11 +53,14 @@ public class DataSet {
         this.data = data;
     }
 
-    public DataSet(String fillColor, String strokeColor, String highlightFill, String highlightStroke, ArrayList<String> data) {
+    public DataSet( String fillColor, String strokeColor, String highlightFill, String highlightStroke, ArrayList<String> data) {
+
         this.fillColor = fillColor;
         this.strokeColor = strokeColor;
         this.highlightFill = highlightFill;
         this.highlightStroke = highlightStroke;
         this.data = data;
     }
+
+
 }
