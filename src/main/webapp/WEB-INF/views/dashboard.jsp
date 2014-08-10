@@ -42,13 +42,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="/index">More Graphs</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a id = "aboutButton" href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a id = "linesOfCodeButton" href="#">Lines Of Code</a></li>
+                <li><a id = "linesOfCommentsButton" href="#">Lines Of Comments</a></li>
+                <li><a id = "numberOfClasses" href="#">Number of Classes</a></li>
+                <li><a id = "cyclomatic" href="#">Cyclomatic</a></li>
+                <li><a id = "ratio" href="#">Ratio</a></li>
+                <li><a id = "interaction" href="#">Interaction</a></li>
+                <li><a id = "volume" href="#">Volume</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -57,13 +61,13 @@
 <div >
 
     <div class="container" style="width: 65%">
-        <canvas id="canvas" height="650" width="800"></canvas>
+        <canvas id="canvas" height="600" width="800"></canvas>
     </div>
 
 
     <script>
         var response = $.ajax({ type: "GET",
-            url: "http://localhost:8080/barChartData?url=${url}",
+            url: "http://localhost:8080/compareLinesOfCode?urlList=${url}",
             async: false
         }).responseText;
 
@@ -79,10 +83,29 @@
 
     <script>
         $(document).ready(function() {
-            $("#aboutButton").click(function(){
-                loadCanvas(returnData("http://localhost:8080/barChartData?url=${url}"));
+            $("#linesOfCodeButton").click(function(){
+                loadCanvas(returnData("http://localhost:8080/compareLinesOfCode?urlList=${url}"));
+            });
+            $("#ratio").click(function(){
+                loadCanvas(returnData("http://localhost:8080/compareRatio?urlList=${url}"));
+            });
+            $("#linesOfCommentsButton").click(function(){
+                loadCanvas(returnData("http://localhost:8080/compareLinesOfComments?urlList=${url}"));
+            });
+            $("#numberOfClasses").click(function(){
+                loadCanvas(returnData("http://localhost:8080/compareNumberOfClasses?urlList=${url}"));
+            });
+            $("#cyclomatic").click(function(){
+                loadCanvas(returnData("http://localhost:8080/compareCyclomatic?urlList=${url}"));
+            });
+            $("#interaction").click(function(){
+                loadCanvas(returnData("http://localhost:8080/compareInteraction?urlList=${url}"));
+            });
+            $("#volume").click(function(){
+                loadCanvas(returnData("http://localhost:8080/compareVolume?urlList=${url}"));
             });
         });
+
         function returnData(urlIn){
             var response = $.ajax({ type: "GET",
                 url: urlIn,
@@ -101,13 +124,7 @@
     </script>
 
 
-</div><!-- /.container -->
-
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-
+</div>
 <script src="resources/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

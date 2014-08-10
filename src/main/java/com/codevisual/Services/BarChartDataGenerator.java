@@ -27,6 +27,7 @@ public class BarChartDataGenerator {
     private CommitInformationRepository commitInformationRepository;
 
 
+
     public BarChartData barChartDataForUrl(String url){
         try {
             return barChartDataFromMetricInformationList(commitInformationRepository.getObjectDateSortedAsc(url)
@@ -38,23 +39,47 @@ public class BarChartDataGenerator {
         }
     }
 
+
+
     private BarChartData barChartDataFromMetricInformationList(List<CommitInformation> commitInformationList){
         ArrayList<String> labels = new ArrayList<>();
         for(CommitInformation commitInformation:commitInformationList){
             labels.add(dateConvertServices.longToDate(commitInformation.getCommitTime()));
         }
+
         ArrayList<String> data = new ArrayList<>();
         for(CommitInformation commitInformation:commitInformationList){
-            data.add(String.valueOf(commitInformation.getLinesOfComments()));
+            data.add(String.valueOf(commitInformation.getLinesOfCode()));
+        }
+
+        ArrayList<String> dataShort = new ArrayList<>();
+        for(CommitInformation commitInformation:commitInformationList){
+            dataShort.add(String.valueOf(commitInformation.getLinesOfComments()));
+        }
+        ArrayList<String> dataComment = new ArrayList<>();
+        for(CommitInformation commitInformation:commitInformationList){
+            dataComment.add(String.valueOf(commitInformation.getCyclomatic()));
         }
 
         ArrayList<DataSet> dataSets = new ArrayList<>();
+        dataSets.add(new DataSet(
+                "rgba(215, 40, 40, 0.9)",
+                "rgba(215, 40, 40, 0.9)",
+                "rgba(215, 40, 40, 0.9)",
+                "rgba(215, 40, 40, 0.9)",
+                data));
         dataSets.add(new DataSet(
                 "rgba(220,220,220,0.5)",
                 "rgba(220,220,220,0.8)",
                 "rgba(220,220,220,0.75)",
                 "rgba(220,220,220,1)",
-                data));
+                dataShort));
+        dataSets.add(new DataSet(
+                "rgba(215,172,131,0.9)",
+                "rgba(215,172,131,0.9)",
+                "rgba(215,172,131,0.9)",
+                "rgba(215,172,131,0.9)",
+                dataComment));
 
         return new BarChartData(labels,dataSets);
     }
