@@ -40,8 +40,6 @@ public class ApiDataGeneratorService {
 
     public List<CommitInformationDifference> changesByUserInRepositories(String url, String name) throws IOException, GitAPIException {
         List<CommitInformationDifference> commitInformationDifferenceList = new ArrayList<>();
-        //Get Commit Data
-        //Starts From second commit as no differences for first commit
         List<CommitInformation> commitInformationList = commitInformationRepository.getObjectDateSorted(url);
         for (int i = 1; i <commitInformationList.size(); i++) {
             if (commitInformationList.get(i).getCommitterName().equals(name)) {

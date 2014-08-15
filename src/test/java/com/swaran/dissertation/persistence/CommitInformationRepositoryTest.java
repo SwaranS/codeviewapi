@@ -25,7 +25,8 @@ public class CommitInformationRepositoryTest {
     private ApplicationContext applicationContext;
 
 
-    /*@Autowired
-    private CommitInformationRepository commitInformationRepository;*/
+
+
+
 
 }

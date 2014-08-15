@@ -24,43 +24,6 @@ public class ChartDataAccepter {
 
 
 
-    public BarChartData barChartLinesOfCode(List<String> urlList){
-        ArrayList<String> labels = new ArrayList<>();
-        for(int i=0;i<generateLabelSize(urlList);i++){
-            labels.add("Commit :"+(i+1));
-        }
-        ArrayList<DataSet> dataSets = new ArrayList<>();
-        List<ArrayList<String>> lists = chartDataSetGenerator.barChartLinesOfCodeGenerator(urlList);
-        for(int i=0;i<lists.size();i++){
-            dataSets.add(new DataSet(
-                    "rgba(215, 40, 40, 0.9)",
-                    "rgba(215, 40, 40, 0.9)",
-                    "rgba(215, 40, 40, 0.9)",
-                    "rgba(215, 40, 40, 0.9)",
-                    lists.get(i)));
-        }
-        return new BarChartData(labels,dataSets);
-
-    }
-    public BarChartData barChartLinesOfComment(List<String> urlList){
-        ArrayList<String> labels = new ArrayList<>();
-        for(int i=0;i<generateLabelSize(urlList);i++){
-            labels.add("Commit :"+(i+1));
-        }
-        ArrayList<DataSet> dataSets = new ArrayList<>();
-        List<ArrayList<String>> lists = chartDataSetGenerator.barChartLinesOfCommentGenerator(urlList);
-        for(int i=0;i<lists.size();i++){
-            dataSets.add(new DataSet(
-                    "rgba(215, 40, 40, 0.9)",
-                    "rgba(215, 40, 40, 0.9)",
-                    "rgba(215, 40, 40, 0.9)",
-                    "rgba(215, 40, 40, 0.9)",
-                    lists.get(i)));
-        }
-        return new BarChartData(labels,dataSets);
-
-    }
-
     public int generateLabelSize(List<String> urlList) {
 
         int longestSize = 0;

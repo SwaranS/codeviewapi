@@ -32,8 +32,7 @@ public final class CommitData {
         int cyclo = 0;
         for (UserClass uc : ucs) {
             cyclo += uc.getCyclomatic();
-            System.out.println(uc.getName());
-            System.out.println(cyclo);
+
         }
         return cyclo;
     }

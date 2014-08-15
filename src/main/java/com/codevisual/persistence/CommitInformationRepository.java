@@ -51,6 +51,12 @@ public class CommitInformationRepository implements Repository<CommitInformation
                 CommitInformation.class);
 
     }
+    public CommitInformation getFinalCommitData(String url) {
+        Query query = new Query(Criteria.where("url").is(url)).with(new Sort(Direction.DESC, "commitTime"));
+        return mongoTemplate.findOne(query,
+                CommitInformation.class);
+
+    }
 
     public List<CommitInformation> getObjectDateSortedAsc(String url) {
         Query query = new Query(Criteria.where("url").is(url)).with(new Sort(Direction.ASC, "commitTime"));

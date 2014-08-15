@@ -84,6 +84,18 @@ public class ApiController {
         return commitInformationRepository.getObjectDateSorted(urlList);
     }
 
+    @RequestMapping(value = "/finalCommitData", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<CommitInformation> finalCommitData(@RequestParam(value = "urlList") String urlList) throws IOException, GitAPIException {
+        List<CommitInformation> commitInformationList = new ArrayList<>();
+        List<String> uniqueUrlList = stringProcessing.commaSeparateUrl(urlList);
+        for (String uniqueUrl : uniqueUrlList) {
+            commitInformationList.add(commitInformationRepository.getFinalCommitData(uniqueUrl));
+        }
+        return commitInformationList;
+    }
+
     @RequestMapping(value = "/contributionsByUsers", method = RequestMethod.GET)
     public
     @ResponseBody
