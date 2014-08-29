@@ -20,6 +20,7 @@ public class CommitInformation {
     private int linesOfCode;
     private int linesOfComments;
 
+
     public String getUrl() {
         return url;
     }

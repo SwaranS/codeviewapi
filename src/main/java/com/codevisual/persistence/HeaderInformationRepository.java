@@ -2,7 +2,7 @@ package com.codevisual.persistence;
 
 import com.codevisual.model.CommitInformation;
 import com.codevisual.model.HeaderInformation;
-import com.codevisual.model.Person;
+
 import com.mongodb.WriteResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;

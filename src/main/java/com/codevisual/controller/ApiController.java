@@ -46,10 +46,10 @@ public class ApiController {
     private ApiDataGeneratorService apiDataGeneratorService;
 
 
-    @RequestMapping(value = "/urlList", method = RequestMethod.GET)
+    @RequestMapping(value = "/returnAllAssociatedData", method = RequestMethod.GET)
     public
     @ResponseBody
-    MetricInformationList receiveUrlList(@RequestParam(value = "urlList") String urlList) throws IOException, GitAPIException {
+    MetricInformationList returnAllAssociatedData(@RequestParam(value = "urlList") String urlList) throws IOException, GitAPIException {
 
         List<String> uniqueUrlList = stringProcessing.commaSeparateUrl(urlList);
         List<MetricInformation> metricInformationList = new ArrayList<>();

@@ -33,6 +33,13 @@ public class CommitInformationGenerator {
         return generateCommitInformationList(repositoryHelper.getGit(gitHelper.getFileFromURL(url)), url);
     }
 
+    /**
+     * Super Important method
+     * @param repository
+     * @param url
+     * @return
+     * @throws Exception
+     */
     private List<CommitInformation> generateCommitInformationList(Repository repository,String url) throws Exception {
         List<CommitInformation> commitInformationList = new ArrayList<>();
         Git git = new Git(repository);
