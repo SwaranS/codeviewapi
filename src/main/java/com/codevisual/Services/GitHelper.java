@@ -1,5 +1,6 @@
 package com.codevisual.Services;
 
+import com.codevisual.persistence.CommitInformationRepository;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.InvalidRemoteException;
@@ -26,11 +27,24 @@ import java.util.regex.Pattern;
 
 @Service
 public class GitHelper {
+    @Autowired
+    private HeadParserService headParser;
+    @Autowired
+    private CommitInformationRepository commitInformationRepository;
 
 
     //Local directory to save
     public final String LOCAL_PATH = "c:/dissertation14/git";
     Repository repository;
+
+
+    public boolean isLocalCommitLatest(String Url) throws GitAPIException, IOException {
+        getGit(gitClone(Url));
+        if (repositoryLastCommitTime(getGit(gitClone(Url))) > locallySavedLatestData(Url)) {
+            return true;
+        }
+        return false;
+    }
 
     public boolean checkLocalDirectory(String URL) throws IOException {
         File gitDir = new File(LOCAL_PATH + "/" + getNameFromUrl(URL));
@@ -47,18 +61,16 @@ public class GitHelper {
         return repository;
     }
 
-    public  File getFileFromURL(String URL) throws UnsupportedEncodingException, MalformedURLException {
+    public File getFileFromURL(String URL) throws UnsupportedEncodingException, MalformedURLException {
         return new File(LOCAL_PATH + "/" + getNameFromUrl(URL));
     }
 
     /**
-     *
      * @param URL
      * @throws GitAPIException
-     * @throws IOException
-     * Only Clones if directory doesn't exist
+     * @throws IOException     Only Clones if directory doesn't exist
      */
-    public  File gitClone(String URL) throws GitAPIException, IOException {
+    public File gitClone(String URL) throws GitAPIException, IOException {
 
         File gitDir = new File(LOCAL_PATH + "/" + getNameFromUrl(URL));
         try {
@@ -81,6 +93,16 @@ public class GitHelper {
             name = matcher.group(0);
         }
         return name.substring(0, name.length() - 4);
+    }
+
+
+    private long repositoryLastCommitTime(org.eclipse.jgit.lib.Repository repository) {
+
+        return headParser.lastCommitTime(repository);
+    }
+
+    private long locallySavedLatestData(String Url) {
+        return commitInformationRepository.getFinalCommitData(Url).getCommitTime();
     }
 
 

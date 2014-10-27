@@ -45,11 +45,7 @@ public class Views {
         return "display";
     }
 
-    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public String dashboard( Model model,@RequestParam(value = "urlList") String urlList) {
-        model.addAttribute("url",urlList);
-        return "dashboard";
-    }
+
 
     //Get parameter & reply json
     @RequestMapping("/receiveUrlList")

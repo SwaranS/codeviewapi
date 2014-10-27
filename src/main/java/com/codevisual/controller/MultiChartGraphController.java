@@ -90,6 +90,9 @@ public class MultiChartGraphController {
     BarChartData compareVolume(@RequestParam(value = "urlList") String urlList) throws IOException, GitAPIException {
         List<String> uniqueUrlList = stringProcessing.commaSeparateUrl(urlList);
         return volumeBarChartGenerator.barChartVolume(uniqueUrlList);
+
     }
+
+
 
 }

@@ -9,6 +9,8 @@ import com.codevisual.model.rest.MetricInformationList;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Home on 02/08/2014.
@@ -29,9 +32,18 @@ public class DisplayController {
     @Autowired
     private StringProcessing stringProcessing;
 
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home() {
+        return "index";
+    }
+
+
     @Autowired
     private ChartDataAccepter chartDataAccepter;
+
     @RequestMapping(value = "/barChartData", method = RequestMethod.GET)
+
     public
     @ResponseBody
     BarChartData barChartData(@RequestParam(value = "url", required = false) String url) {
@@ -43,6 +55,12 @@ public class DisplayController {
     public String displayDynamic() {
 
         return "displayDynamic";
+    }
+
+    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    public String dashboard( Model model,@RequestParam(value = "urlList") String urlList) {
+        model.addAttribute("url",urlList);
+        return "dashboard";
     }
 
 
